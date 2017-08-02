@@ -1,0 +1,6 @@
+.vs/
+*.log
+Debug
+Release
+design
+libs
