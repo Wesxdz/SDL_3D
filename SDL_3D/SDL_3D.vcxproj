@@ -155,6 +155,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraController.h" />
     <ClInclude Include="ColorVertex.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="CubeManager.h" />
@@ -162,11 +164,14 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicalObject.h" />
+    <ClInclude Include="KeyCam.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="ShapeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="ColorVertex.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="CubeManager.cpp" />
@@ -174,6 +179,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicalObject.cpp" />
+    <ClCompile Include="KeyCam.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="ShapeGenerator.cpp" />

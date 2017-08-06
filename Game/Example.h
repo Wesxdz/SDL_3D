@@ -2,6 +2,7 @@
 
 #include "CubeManager.h"
 #include "GameState.h"
+#include "KeyCam.h"
 
 class Example : public GameState
 {
@@ -14,4 +15,6 @@ public:
 
 public:
 	CubeManager cubes;
+	KeyCam test;
+
 };

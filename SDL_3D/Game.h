@@ -1,6 +1,7 @@
 #pragma once
 
 class GameState;
+#include "Camera.h"
 #include "ShaderProgram.h"
 #include <SDL.h>
 
@@ -23,6 +24,7 @@ public:
 	SDL_Window* mWindow{ nullptr };
 	SDL_GLContext mContext;
 	Uint32 mLastTick{ 0 };
+	Camera mCamera;
 
 public:
 	static Game* inst;

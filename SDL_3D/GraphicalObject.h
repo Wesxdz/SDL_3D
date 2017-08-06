@@ -14,7 +14,7 @@ public:
 	~GraphicalObject();
 
 	void Update(float dt);
-	glm::mat4 Transform();
+	glm::mat4 Model();
 public:
 	Mesh* mShape;
 

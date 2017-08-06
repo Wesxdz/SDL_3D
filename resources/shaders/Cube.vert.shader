@@ -5,12 +5,12 @@ layout(location = 1) in vec3 vColor;
 
 out vec4 color;
 
-uniform mat4 transform;
+uniform mat4 MVP;
 uniform vec3 tint;
 
 void main()
 {
-	vec4 pos = transform * vec4(vPosition, 1.0);
+	vec4 pos = MVP * vec4(vPosition, 1.0);
 	gl_Position = pos;
-	color = vec4(tint, 0.4 + pos.z * 2);
+	color = vec4((vColor + tint)/2, 1.0);
 }

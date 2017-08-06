@@ -31,10 +31,11 @@ void Game::Init(const char* name, int width, int height)
 		name, 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 		width, height, 
-		SDL_WINDOW_OPENGL);
+		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	if (!inst->mWindow) {
 		SDL_Log("SDL unable to create window: %s", SDL_GetError());
 	}
+	inst->mCamera.mScreenAspect = width / (float)height;
 
 	inst->mContext = SDL_GL_CreateContext(inst->mWindow);
 	if (!inst->mContext) {

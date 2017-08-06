@@ -17,7 +17,7 @@ void GraphicalObject::Update(float dt)
 	mRotation = glm::rotate(mRotation, dt * mRotateSpeed, mRotateAxis);
 }
 
-glm::mat4 GraphicalObject::Transform()
+glm::mat4 GraphicalObject::Model()
 {
-	return mTranslation * mScale * mRotation;
+	return mTranslation * mRotation * mScale;
 }

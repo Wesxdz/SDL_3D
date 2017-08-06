@@ -8,9 +8,8 @@
 
 void Example::Init()
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
 	glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 	ShaderProgram* shaders = &Game::inst->mShaders;
 	shaders->Init();
@@ -21,6 +20,7 @@ void Example::Init()
 	}
 	shaders->LinkAndUseProgram();
 	cubes.Init(&Game::inst->mShaders);
+	test.SetCamera(&Game::inst->mCamera);
 }
 
 void Example::Input(SDL_Event* e)
@@ -28,15 +28,18 @@ void Example::Input(SDL_Event* e)
 	if (e->type == SDL_QUIT) {
 		Game::inst->mLoop = false;
 	}
+	if (e->type == SDL_KEYDOWN) {
+	}
 }
 
 void Example::Update(float dt)
 {
+	test.Update(dt);
 	cubes.Update(dt);
 }
 
 void Example::Draw()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	cubes.Draw();
 }

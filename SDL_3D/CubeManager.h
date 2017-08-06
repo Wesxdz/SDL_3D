@@ -14,10 +14,12 @@ public:
 	void Draw();
 
 	void Init(ShaderProgram* shaderManager);
+
+public:
+	GraphicalObject mCubes[5];
 private:
 	ShaderProgram* mShaderManager;
 	void InitCubes();
-	GraphicalObject mCubes[5];
 	ShapeGenerator mShapeGen;
 };
 
