@@ -89,28 +89,28 @@ void CubeManager::InitCubes()
 
 	// Place one cube in the upper - left of the screen, have it rotate around the X - axis.
 	mCubes[1].mScale = glm::scale(glm::vec3(0.1, 0.1, 0.1));
-	mCubes[1].mTranslation = glm::translate(glm::vec3(-0.5f, +0.5f, 0));
+	mCubes[1].mTranslation = glm::translate(glm::vec3(-5, 5, 1));
 	mCubes[1].mRotateAxis = glm::vec3(1, 0, 0);
 	mCubes[1].mRotateSpeed = 2.0f;
 	mCubes[1].mTint = glm::vec3(1.0f, 0.2f, 0.0f);
 
 	// Place one cube in the upper - right of the screen, have it rotate around the Y - axis.
 	mCubes[2].mScale = glm::scale(glm::vec3(0.1, 0.1, 0.1));
-	mCubes[2].mTranslation = glm::translate(glm::vec3(0.5f, 0.5f, 0));
+	mCubes[2].mTranslation = glm::translate(glm::vec3(0.5f, 0.5f, 10));
 	mCubes[2].mRotateAxis = glm::vec3(0, 1, 0);
 	mCubes[2].mRotateSpeed = 2.0f;
 	mCubes[2].mTint = glm::vec3(0.0f, 0.7f, 0.3f);
 
 	// Place one cube in the lower - right of the screen, rotating around the Z - axis.
 	mCubes[3].mScale = glm::scale(glm::vec3(0.1, 0.1, 0.1));
-	mCubes[3].mTranslation = glm::translate(glm::vec3(0.5f, -0.5f, 0));
+	mCubes[3].mTranslation = glm::translate(glm::vec3(0.5f, -0.5f, 4));
 	mCubes[3].mRotateAxis = glm::vec3(0, 0, 1);
 	mCubes[3].mRotateSpeed = 2.0f;
 	mCubes[3].mTint = glm::vec3(0.2f, 0.5f, 0.8f);
 
 	// Place one cube in the lower - left of the screen, have it rotate around the same axis as the first cube, but have it rotate in the other direction.
 	mCubes[4].mScale = glm::scale(glm::vec3(0.1, 0.1, 0.1));
-	mCubes[4].mTranslation = glm::translate(glm::vec3(-0.5f, -0.5f, 0));
+	mCubes[4].mTranslation = glm::translate(glm::vec3(-0.5f, -0.5f, -4));
 	mCubes[4].mRotateAxis = glm::vec3(0, 0, 1);
 	mCubes[4].mRotateSpeed = -2.0f;
 	mCubes[4].mTint = glm::vec3(0.2f, 0.5f, 0.8f);

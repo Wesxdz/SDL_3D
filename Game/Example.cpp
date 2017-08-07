@@ -21,6 +21,7 @@ void Example::Init()
 	shaders->LinkAndUseProgram();
 	cubes.Init(&Game::inst->mShaders);
 	test.SetCamera(&Game::inst->mCamera);
+	mouser.SetCamera(&Game::inst->mCamera);
 }
 
 void Example::Input(SDL_Event* e)
@@ -30,12 +31,14 @@ void Example::Input(SDL_Event* e)
 	}
 	if (e->type == SDL_KEYDOWN) {
 	}
+	mouser.Input(e);
 }
 
 void Example::Update(float dt)
 {
 	test.Update(dt);
 	cubes.Update(dt);
+	mouser.Update(dt);
 }
 
 void Example::Draw()

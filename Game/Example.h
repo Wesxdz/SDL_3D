@@ -3,6 +3,7 @@
 #include "CubeManager.h"
 #include "GameState.h"
 #include "KeyCam.h"
+#include "MouseCam.h"
 
 class Example : public GameState
 {
@@ -16,5 +17,5 @@ public:
 public:
 	CubeManager cubes;
 	KeyCam test;
-
+	MouseCam mouser;
 };

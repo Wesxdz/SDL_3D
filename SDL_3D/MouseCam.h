@@ -1,14 +1,18 @@
 #pragma once
 
 #include "CameraController.h"
+#include "vec3.hpp"
 
-// Control a Camera using keyboard input
-class KeyCam : public CameraController
+class MouseCam : public CameraController
 {
 public:
+	MouseCam();
 	// Inherited via CameraController
 	virtual bool Input(SDL_Event* e) override;
 	virtual void Update(float dt) override;
 public:
-	int mSpeed{ 5 };
+	glm::vec3 mFocus;
+	float mSpeed;
+	float mVerticalAngle;
+	float mHorizontalAngle;
 };

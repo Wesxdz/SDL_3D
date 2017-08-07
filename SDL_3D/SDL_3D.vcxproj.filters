@@ -54,6 +54,9 @@
     <ClInclude Include="KeyCam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MouseCam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -93,6 +96,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="KeyCam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseCam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
