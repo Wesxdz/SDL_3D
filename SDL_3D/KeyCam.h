@@ -6,9 +6,12 @@
 class KeyCam : public CameraController
 {
 public:
+	KeyCam();
 	// Inherited via CameraController
 	virtual bool Input(SDL_Event* e) override;
 	virtual void Update(float dt) override;
 public:
-	int mSpeed{ 5 };
+	float mMoveSpeed;
+	float mLiftSpeed;
+	float mRotateSpeed;
 };

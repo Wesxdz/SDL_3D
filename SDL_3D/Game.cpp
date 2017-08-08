@@ -28,7 +28,7 @@ void Game::Init(const char* name, int width, int height)
 	}
 
 	inst->mWindow = SDL_CreateWindow(
-		name, 
+		name,
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 		width, height, 
 		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);

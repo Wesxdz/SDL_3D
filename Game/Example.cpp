@@ -10,6 +10,8 @@ void Example::Init()
 {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 	ShaderProgram* shaders = &Game::inst->mShaders;
 	shaders->Init();
@@ -30,6 +32,18 @@ void Example::Input(SDL_Event* e)
 		Game::inst->mLoop = false;
 	}
 	if (e->type == SDL_KEYDOWN) {
+		if (e->key.keysym.sym == SDLK_ESCAPE) {
+			Game::inst->mLoop = false;
+		}
+	}
+	if (e->type == SDL_WINDOWEVENT) {
+		if (e->window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+			// TODO: Move this to Game
+			int w, h;
+			SDL_GetWindowSize(Game::inst->mWindow, &w, &h);
+			Game::inst->mCamera.mScreenAspect = w / (float)h;
+			glViewport(0, 0, w, h); // Hooray!
+		}
 	}
 	mouser.Input(e);
 }

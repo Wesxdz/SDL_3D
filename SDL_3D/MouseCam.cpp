@@ -25,8 +25,8 @@ bool MouseCam::Input(SDL_Event* e)
 		}
 		if (e->motion.state & SDL_BUTTON_RMASK) {
 			// TODO: Rotate mCamera view direction around the y-axis
-			mCamera->RotateHorizontal(-e->motion.xrel * mSpeed/4);
-			mCamera->RotateVertical(-e->motion.yrel * mSpeed/4);
+			mCamera->RotateYaw(-e->motion.xrel * mSpeed/4);
+			mCamera->RotatePitch(-e->motion.yrel * mSpeed/4);
 		}
 	}
 	// TODO: Zoom based on current zoom amount

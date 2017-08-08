@@ -21,13 +21,22 @@ public:
 	// Where the camera is positioned in world space
 	glm::vec3 mPosition;
 
-	float mVerticalAngle;
-	float mHorizontalAngle;
+	/*
+	Camera rotation about the x-axis
+	This is like a person nodding thier head up and down
+	*/
+	float mPitchRotation;
+	/*
+	Camera view direction  about the y-axis
+	This is like an owl rotating its head
+	*/
+	float mYawRotation;
 
 	// Where the camera is looking towards in world space
 	glm::vec3 mViewDirection;
 	glm::vec3 mUpDirection;
 	glm::vec3 mRightDirection;
+	glm::vec3 mForwardDirection;
 
 	// window.width/window.height
 	float mScreenAspect;
@@ -37,12 +46,12 @@ private:
 	void Orient();
 
 public:
-	inline void RotateVertical(float verticleAngle) { 
-		mVerticalAngle += verticleAngle;
+	inline void RotatePitch(float rads) { 
+		mPitchRotation += rads;
 		Orient();
 	}
-	inline void RotateHorizontal(float horizontal) {
-		mHorizontalAngle += horizontal;
+	inline void RotateYaw(float rads) {
+		mYawRotation += rads;
 		Orient();
 	}
 };

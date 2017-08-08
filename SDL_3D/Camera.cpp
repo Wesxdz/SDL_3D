@@ -5,8 +5,8 @@
 
 Camera::Camera() :
 	mPosition{ 0, 4, 4 },
-	mHorizontalAngle { 0 },
-	mVerticalAngle{ -45 }
+	mYawRotation { 0 },
+	mPitchRotation{ -45 }
 {
 	Orient();
 }
@@ -24,12 +24,13 @@ glm::mat4 Camera::Projection()
 void Camera::Orient()
 {
 	mViewDirection = glm::vec3(
-		cos(mVerticalAngle) * sin(mHorizontalAngle),
-		sin(mVerticalAngle), 
-		cos(mVerticalAngle) * cos(mHorizontalAngle));
+		cos(mPitchRotation) * sin(mYawRotation),
+		sin(mPitchRotation), 
+		cos(mPitchRotation) * cos(mYawRotation));
 	mRightDirection = glm::vec3(
-		sin(mHorizontalAngle - 3.14f / 2.0f),
+		sin(mYawRotation - 3.14f / 2.0f),
 		0,
-		cos(mHorizontalAngle - 3.14f / 2.0f));
+		cos(mYawRotation - 3.14f / 2.0f));
 	mUpDirection = glm::cross(mRightDirection, mViewDirection);
+	mForwardDirection = glm::cross(mUpDirection, mRightDirection);
 }
