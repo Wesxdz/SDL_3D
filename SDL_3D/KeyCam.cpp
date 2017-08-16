@@ -5,7 +5,7 @@
 
 KeyCam::KeyCam() :
 	mMoveSpeed{ 4 },
-	mLiftSpeed{ 4 },
+	mRiseSpeed{ 4 },
 	mRotateSpeed{ 1 }
 {
 }
@@ -28,8 +28,8 @@ void KeyCam::Update(float dt)
 	if (keyboard[SDL_SCANCODE_W]) { mCamera->mPosition += dt * mCamera->mForwardDirection * mMoveSpeed; }
 
 	// Up and down
-	if (keyboard[SDL_SCANCODE_R]) { mCamera->mPosition += glm::vec3(0.0f, dt * mLiftSpeed, 0.0f); }
-	if (keyboard[SDL_SCANCODE_F]) { mCamera->mPosition += glm::vec3(0.0f, -dt * mLiftSpeed, 0.0f); }
+	if (keyboard[SDL_SCANCODE_R]) { mCamera->mPosition += glm::vec3(0.0f, dt * mRiseSpeed, 0.0f); }
+	if (keyboard[SDL_SCANCODE_F]) { mCamera->mPosition += glm::vec3(0.0f, -dt * mRiseSpeed, 0.0f); }
 
 	if (keyboard[SDL_SCANCODE_Q]) { mCamera->RotateYaw(dt * mRotateSpeed); }
 	if (keyboard[SDL_SCANCODE_E]) { mCamera->RotateYaw(-dt * mRotateSpeed); }

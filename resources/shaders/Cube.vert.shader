@@ -12,5 +12,5 @@ void main()
 {
 	vec4 pos = MVP * vec4(vPosition, 1.0);
 	gl_Position = pos;
-	color = vec4(tint, 1 - ((pos.z - 10)/20));
+	color = vec4(tint, 1);
 }

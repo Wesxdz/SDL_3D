@@ -12,11 +12,11 @@ struct ShaderInfo
     GLenum type { 0 };      // shader type, eg, GL_VERTEX_SHADER
     };
 
-class ShaderProgram
+class ShaderSys
     {
     public:
-        ShaderProgram( );
-        ~ShaderProgram( );
+        ShaderSys( );
+        ~ShaderSys( );
 
     public:
 		bool Init();

@@ -1,0 +1,11 @@
+SDL_3D Systems
+
+MemSys
+-Manages memory for all Components
+
+AssetSys
+-Loads Meshes into RenderSys
+
+RenderSys
+-Draws all Meshes and Renderable components
+

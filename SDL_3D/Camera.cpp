@@ -1,6 +1,7 @@
 #include "Camera.h"
-#include "gtx/transform.hpp"
 
+#include "Game.h"
+#include <gtx/transform.hpp>
 #include <iostream>
 
 Camera::Camera() :
@@ -9,6 +10,19 @@ Camera::Camera() :
 	mPitchRotation{ -45 }
 {
 	Orient();
+}
+
+bool Camera::Input(SDL_Event* e)
+{
+	if (e->type == SDL_WINDOWEVENT) {
+		if (e->window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+			int w, h;
+			SDL_GetWindowSize(Game::inst.window, &w, &h);
+			mScreenAspect = w / (float)h;
+			glViewport(0, 0, w, h);
+		}
+	}
+	return false;
 }
 
 glm::mat4 Camera::View()

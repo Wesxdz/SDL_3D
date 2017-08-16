@@ -1,17 +1,17 @@
-#include "ShaderProgram.h"
+#include "ShaderSys.h"
 #include "Assert.h"
 #include "FileUtils.h"
 #include <iostream>
 
-ShaderProgram::ShaderProgram()
+ShaderSys::ShaderSys()
 {
 }
 
-ShaderProgram::~ShaderProgram()
+ShaderSys::~ShaderSys()
 {
 }
 
-bool ShaderProgram::Init()
+bool ShaderSys::Init()
 {
 	if (!mProgramCreated) {
 		mProgramID = glCreateProgram();
@@ -20,7 +20,7 @@ bool ShaderProgram::Init()
 	return false;
 }
 
-bool ShaderProgram::Shutdown()
+bool ShaderSys::Shutdown()
 {
 	DeleteShaders();
 	DeleteProgram();
@@ -28,19 +28,19 @@ bool ShaderProgram::Shutdown()
 	return false;
 }
 
-bool ShaderProgram::AddVertexShader(const char * const filename)
+bool ShaderSys::AddVertexShader(const char * const filename)
 {
 	AddShader(filename, GL_VERTEX_SHADER);
 	return false;
 }
 
-bool ShaderProgram::AddFragmentShader(const char * const filename)
+bool ShaderSys::AddFragmentShader(const char * const filename)
 {
 	AddShader(filename, GL_FRAGMENT_SHADER);
 	return false;
 }
 
-bool ShaderProgram::AddShader(const char* const filename, GLenum shaderType)
+bool ShaderSys::AddShader(const char* const filename, GLenum shaderType)
 {
 	GLuint shaderID = glCreateShader(shaderType);
 	GLchar* shaderSource = FileUtils::ReadFileIntoString(filename);
@@ -52,7 +52,7 @@ bool ShaderProgram::AddShader(const char* const filename, GLenum shaderType)
 	return true;
 }
 
-bool ShaderProgram::CheckShaderCompileStatus(GLuint shaderID)
+bool ShaderSys::CheckShaderCompileStatus(GLuint shaderID)
 {
 	GLint status;
 	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &status);
@@ -64,14 +64,14 @@ bool ShaderProgram::CheckShaderCompileStatus(GLuint shaderID)
 	return false;
 }
 
-bool ShaderProgram::CheckProgramStatus(GLenum pname)
+bool ShaderSys::CheckProgramStatus(GLenum pname)
 {
 	GLint programiv;
 	glGetProgramiv(mProgramID, pname, &programiv);
 	return true;
 }
 
-bool ShaderProgram::CheckProgramStatus()
+bool ShaderSys::CheckProgramStatus()
 {
 	if (CheckProgramStatus(GL_LINK_STATUS)) {
 		printf("Successful GL_LINK_STATUS\n");
@@ -83,28 +83,28 @@ bool ShaderProgram::CheckProgramStatus()
 	return false;
 }
 
-bool ShaderProgram::LinkAndUseProgram()
+bool ShaderSys::LinkAndUseProgram()
 {
 	glLinkProgram(mProgramID);
 	glUseProgram(mProgramID);
 	return false;
 }
 
-GLint ShaderProgram::GetUniformLocation(const GLchar* name)
+GLint ShaderSys::GetUniformLocation(const GLchar* name)
 {
 	GLint result;
 	result = glGetUniformLocation(mProgramID, name);
 	return result;
 }
 
-GLint ShaderProgram::GetAttribLocation(const GLchar* name)
+GLint ShaderSys::GetAttribLocation(const GLchar* name)
 {
 	GLint result;
 	result = glGetAttribLocation(mProgramID, name);
 	return result;
 }
 
-void ShaderProgram::ShowShaderLogInfo(GLuint shaderID, char* infoBuffer, GLint bufferLen)
+void ShaderSys::ShowShaderLogInfo(GLuint shaderID, char* infoBuffer, GLint bufferLen)
 {
 	GLsizei len;
 	glGetShaderInfoLog(shaderID, bufferLen, &len, infoBuffer);
@@ -115,7 +115,7 @@ void ShaderProgram::ShowShaderLogInfo(GLuint shaderID, char* infoBuffer, GLint b
 	std::cout << "\n";
 }
 
-void ShaderProgram::ShowProgramLogInfo(char* infoBuffer, GLint bufferLen, GLenum pname)
+void ShaderSys::ShowProgramLogInfo(char* infoBuffer, GLint bufferLen, GLenum pname)
 {
 	for (int i = 0; i < bufferLen; i++) {
 		std::cout << infoBuffer[i];
@@ -123,7 +123,7 @@ void ShaderProgram::ShowProgramLogInfo(char* infoBuffer, GLint bufferLen, GLenum
 	std::cout << "\n";
 }
 
-bool ShaderProgram::SaveShaderInfo(const char* const filename, GLenum shaderType, GLuint shaderId)
+bool ShaderSys::SaveShaderInfo(const char* const filename, GLenum shaderType, GLuint shaderId)
 {
 	printf("Saving shader with ID %d\n", shaderId);
 	char name[maxShaderNameLen];
@@ -135,7 +135,7 @@ bool ShaderProgram::SaveShaderInfo(const char* const filename, GLenum shaderType
 	return false;
 }
 
-void ShaderProgram::DeleteShaders()
+void ShaderSys::DeleteShaders()
 {
 	for (GLuint iShader = 0; iShader < mNumShaders; iShader++) {
 		glDeleteShader(mShaders[iShader].id);
@@ -143,7 +143,7 @@ void ShaderProgram::DeleteShaders()
 	mNumShaders = 0;
 }
 
-void ShaderProgram::DeleteProgram()
+void ShaderSys::DeleteProgram()
 {
 	if (mProgramCreated) {
 		glDeleteProgram(mProgramID);

@@ -1,6 +1,6 @@
 #pragma once
 
-class ShaderProgram;
+class ShaderSys;
 #include "GraphicalObject.h"
 #include "ShapeGenerator.h"
 
@@ -13,12 +13,12 @@ public:
 	void Update(float dt);
 	void Draw();
 
-	void Init(ShaderProgram* shaderManager);
+	void Init(ShaderSys* shaderManager);
 
 public:
 	GraphicalObject mCubes[5];
 private:
-	ShaderProgram* mShaderManager;
+	ShaderSys* mShaderManager;
 	void InitCubes();
 	ShapeGenerator mShapeGen;
 };

@@ -71,22 +71,6 @@ unsigned short ShapeGenerator::cubeIndices[36] =
 	20, 22, 23,
 };
 
-ShapeGenerator::ShapeGenerator()
-{
-}
-
-
-ShapeGenerator::~ShapeGenerator()
-{
-	delete mDefaultCube;
-}
-
-void ShapeGenerator::MakeCube(GraphicalObject* gob)
-{
-	if (!mDefaultCube) { mDefaultCube = GenCubeMesh(); }
-	gob->mShape = mDefaultCube;
-}
-
 Mesh* ShapeGenerator::GenCubeMesh()
 {
 	Mesh* cube = new Mesh();

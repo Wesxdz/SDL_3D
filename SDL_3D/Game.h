@@ -2,30 +2,44 @@
 
 class GameState;
 #include "Camera.h"
-#include "ShaderProgram.h"
+#include "ShaderSys.h"
+#include "RenderSys.h"
 #include <SDL.h>
+#include <vector>
 
+/*
+The Game class contains a singleton, #inst, that holds all Systems
+*/
 class Game
 {
+
+public:
+	static Game inst;
+
 public:
 	static void Init(const char* name, int width, int height);
 	static void Run(GameState* startState);
 	static void SetState(GameState* currentState);
+	static void Exit();
+
+public:
+	GameState* currentState{ nullptr };
+
+	SDL_Window* window{ nullptr };
+	SDL_GLContext glContext;
+
+	ShaderSys shaders;
+	RenderSys renderer;
+
+	Camera* camera;
+
+private:
+	bool mLoop{ true };
+	Uint32 mLastTick{ 0 };
 
 private:
 	Game();
 	~Game();
 	void RunInst();
 
-public:
-	ShaderProgram mShaders;
-	bool mLoop{ true };
-	GameState* mCurrentState{ nullptr };
-	SDL_Window* mWindow{ nullptr };
-	SDL_GLContext mContext;
-	Uint32 mLastTick{ 0 };
-	Camera mCamera;
-
-public:
-	static Game* inst;
 };

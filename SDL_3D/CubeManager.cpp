@@ -4,7 +4,7 @@
 #include "Game.h"
 #include <GL/glew.h>
 #include <iostream>
-#include "ShaderProgram.h"
+#include "ShaderSys.h"
 #include "glm.hpp"
 #include "gtc/type_ptr.hpp"
 #include "gtc/matrix_transform.hpp"
@@ -30,14 +30,13 @@ void CubeManager::Draw()
 	GLint tintName = mShaderManager->GetUniformLocation("tint");
 	GLint transformName = mShaderManager->GetUniformLocation("MVP");
 	for (int i = 0; i < 5; i++) { 
-		glUniform3f(tintName, mCubes[i].mTint.x, mCubes[i].mTint.y, mCubes[i].mTint.z);
-		// Game::inst->mCamera.View() * 
-		glUniformMatrix4fv(transformName, 1, GL_FALSE, glm::value_ptr(Game::inst->mCamera.Projection() * Game::inst->mCamera.View() * mCubes[i].Model()));
+		glUniform3f(tintName, mCubes[i].mTint.r, mCubes[i].mTint.g, mCubes[i].mTint.b);
+		glUniformMatrix4fv(transformName, 1, GL_FALSE, glm::value_ptr(Game::inst.camera->Projection() * Game::inst.camera->View() * mCubes[i].Model()));
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
 	}
 }
 
-void CubeManager::Init(ShaderProgram* shaderManager)
+void CubeManager::Init(ShaderSys* shaderManager)
 {
 	mShaderManager = shaderManager;
 	InitCubes();
@@ -57,28 +56,28 @@ void CubeManager::Init(ShaderProgram* shaderManager)
 	// Specifies the byte offset between consecutive generic vertex attributes
 	GLsizei vertexStride = sizeof(glm::vec3) * 2;
 
-	glGenBuffers(1, &vertexBuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, mShapeGen.mDefaultCube->getVertSize(), mShapeGen.mDefaultCube->mVertices, GL_STATIC_DRAW);
+	//glGenBuffers(1, &vertexBuffer);
+	//glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	//glBufferData(GL_ARRAY_BUFFER, mShapeGen.mDefaultCube->getVertSize(), mShapeGen.mDefaultCube->mVertices, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(positionIndex, positionSize, GL_FLOAT, GL_FALSE, vertexStride, (void*)positionOffset);
-	glEnableVertexAttribArray(positionIndex);
-	
-	glVertexAttribPointer(colorIndex, colorSize, GL_FLOAT, GL_FALSE, vertexStride, (void*)colorOffset);
-	glEnableVertexAttribArray(colorIndex);
+	//glVertexAttribPointer(positionIndex, positionSize, GL_FLOAT, GL_FALSE, vertexStride, (void*)positionOffset);
+	//glEnableVertexAttribArray(positionIndex);
+	//
+	//glVertexAttribPointer(colorIndex, colorSize, GL_FLOAT, GL_FALSE, vertexStride, (void*)colorOffset);
+	//glEnableVertexAttribArray(colorIndex);
 
-	GLuint indexBuffer;
+	//GLuint indexBuffer;
 
-	glGenBuffers(1, &indexBuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, mShapeGen.mDefaultCube->getIndexSize(), mShapeGen.mDefaultCube->mIndices, GL_STATIC_DRAW);
+	//glGenBuffers(1, &indexBuffer);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, mShapeGen.mDefaultCube->getIndexSize(), mShapeGen.mDefaultCube->mIndices, GL_STATIC_DRAW);
 }
 
 void CubeManager::InitCubes()
 {
-	for (int i = 0; i < 5; i++) {
-		mShapeGen.MakeCube(&mCubes[i]);
-	}
+	//for (int i = 0; i < 5; i++) {
+	//	mShapeGen.MakeCube(&mCubes[i]);
+	//}
 
 	// One cube must be large, front and center on the screen with a rotate axis that shows off all faces, or at least 5 of them
 	mCubes[0].mScale = glm::scale(glm::vec3(0.3f, 0.3f, 0.3f));
