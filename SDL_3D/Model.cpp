@@ -31,5 +31,5 @@ void Model::SetTranslation(glm::vec3 translation)
 
 void Model::calcModel()
 {
-	mTransform = mTranslation * mRotation * mScale;
+	mTransform = mTranslation * (mRotation * mScale);
 }

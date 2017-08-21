@@ -1,5 +1,6 @@
 #include "RenderSys.h"
 
+#include "Color.h"
 #include "Game.h"
 #include "GameState.h"
 #include "Model.h"
@@ -50,9 +51,16 @@ void RenderSys::Draw()
 	GLint tintName = Game::inst.shaders.GetUniformLocation("tint");
 	GLint transformName = Game::inst.shaders.GetUniformLocation("MVP");
 	for (Entity* entity : Game::inst.currentState->entities) {
+		// TODO: Store Models in RenderSys, then loop through them
 		Model* model;
 		if (model = entity->GetComponent<Model>()) {
-			glUniform3f(tintName, 0.0f, 0.0f, 1.0f);
+			Color* color;
+			if (color = entity->GetComponent<Color>()) {
+				glUniform3f(tintName, color->r, color->g, color->b);
+			}
+			else {
+				glUniform3f(tintName, 1.0f, 1.0f, 1.0f);
+			}
 			glUniformMatrix4fv(transformName, 1, GL_FALSE,
 				glm::value_ptr(Game::inst.camera->Projection() * Game::inst.camera->View() * model->Transform()));
 			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);

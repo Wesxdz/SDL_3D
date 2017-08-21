@@ -157,18 +157,18 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="ColorVertex.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="CubeManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FileUtils.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="GraphicalObject.h" />
     <ClInclude Include="KeyCam.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseCam.h" />
+    <ClInclude Include="Rainbow.h" />
     <ClInclude Include="RenderSys.h" />
     <ClInclude Include="Rotate.h" />
     <ClInclude Include="ShaderSys.h" />
@@ -177,18 +177,18 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="ColorVertex.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="CubeManager.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FileUtils.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="GraphicalObject.cpp" />
     <ClCompile Include="KeyCam.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="MouseCam.cpp" />
+    <ClCompile Include="Rainbow.cpp" />
     <ClCompile Include="RenderSys.cpp" />
     <ClCompile Include="Rotate.cpp" />
     <ClCompile Include="ShaderSys.cpp" />

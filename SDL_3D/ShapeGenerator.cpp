@@ -1,6 +1,5 @@
 #include "ShapeGenerator.h"
 
-#include "GraphicalObject.h"
 #include "Mesh.h"
 #include <gtc/random.hpp>
 #include <iostream>
@@ -80,6 +79,7 @@ Mesh* ShapeGenerator::GenCubeMesh()
 	// mIndices should point to an array of 36 indices. 3 indices per triangle times 2 triangles per face times 6 faces.
 	cube->mIndices = &cubeIndices[0];
 	cube->mNumIndices = 36;
+	SetColors(&cube->mVertices->color[0], 24, 6);
 	return cube;
 }
 

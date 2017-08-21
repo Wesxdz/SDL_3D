@@ -1,9 +1,6 @@
 #pragma once
 
-#include "CubeManager.h"
 #include "GameState.h"
-#include "KeyCam.h"
-#include "MouseCam.h"
 
 class Example : public GameState
 {
