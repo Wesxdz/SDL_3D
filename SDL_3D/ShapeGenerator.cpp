@@ -7,40 +7,40 @@
 ColorVertex ShapeGenerator::cubeVerts[24] =
 {
 	// Back Face
-	ColorVertex{ -1.0, +1.0, -1.0 },
-	ColorVertex{ +1.0, +1.0, -1.0 },
-	ColorVertex{ +1.0, -1.0, -1.0 },
-	ColorVertex{ -1.0, -1.0, -1.0 },
+	ColorVertex{ -1.0, +1.0, -1.0, glm::vec3(0.0, 0.0, -1.0) },
+	ColorVertex{ +1.0, +1.0, -1.0, glm::vec3(0.0, 0.0, -1.0) },
+	ColorVertex{ +1.0, -1.0, -1.0, glm::vec3(0.0, 0.0, -1.0) },
+	ColorVertex{ -1.0, -1.0, -1.0, glm::vec3(0.0, 0.0, -1.0) },
 
 	// Right Side
-	ColorVertex{ +1.0, +1.0, -1.0 },
-	ColorVertex{ +1.0, +1.0, +1.0 },
-	ColorVertex{ +1.0, -1.0, +1.0 },
-	ColorVertex{ +1.0, -1.0, -1.0 },
+	ColorVertex{ +1.0, +1.0, -1.0, glm::vec3(1.0, 0.0, 0.0) },
+	ColorVertex{ +1.0, +1.0, +1.0, glm::vec3(1.0, 0.0, 0.0) },
+	ColorVertex{ +1.0, -1.0, +1.0, glm::vec3(1.0, 0.0, 0.0) },
+	ColorVertex{ +1.0, -1.0, -1.0, glm::vec3(1.0, 0.0, 0.0) },
 
 	// Left Side
-	ColorVertex{ -1.0, +1.0, -1.0 },
-	ColorVertex{ -1.0, +1.0, +1.0 },
-	ColorVertex{ -1.0, -1.0, +1.0 },
-	ColorVertex{ -1.0, -1.0, -1.0 },
+	ColorVertex{ -1.0, +1.0, -1.0, glm::vec3(-1.0, 0.0, 0.0) },
+	ColorVertex{ -1.0, +1.0, +1.0, glm::vec3(-1.0, 0.0, 0.0) },
+	ColorVertex{ -1.0, -1.0, +1.0, glm::vec3(-1.0, 0.0, 0.0) },
+	ColorVertex{ -1.0, -1.0, -1.0, glm::vec3(-1.0, 0.0, 0.0) },
 
 	// Top
-	ColorVertex{ -1.0, +1.0, -1.0 },
-	ColorVertex{ +1.0, +1.0, -1.0 },
-	ColorVertex{ +1.0, +1.0, +1.0 },
-	ColorVertex{ -1.0, +1.0, +1.0 },
+	ColorVertex{ -1.0, +1.0, -1.0, glm::vec3(0.0, 1.0, 0.0) },
+	ColorVertex{ +1.0, +1.0, -1.0, glm::vec3(0.0, 1.0, 0.0) },
+	ColorVertex{ +1.0, +1.0, +1.0, glm::vec3(0.0, 1.0, 0.0) },
+	ColorVertex{ -1.0, +1.0, +1.0, glm::vec3(0.0, 1.0, 0.0) },
 
 	// Bottom
-	ColorVertex{ -1.0, -1.0, -1.0 },
-	ColorVertex{ +1.0, -1.0, -1.0 },
-	ColorVertex{ +1.0, -1.0, +1.0 },
-	ColorVertex{ -1.0, -1.0, +1.0 },
+	ColorVertex{ -1.0, -1.0, -1.0, glm::vec3(0.0, -1.0, 0.0) },
+	ColorVertex{ +1.0, -1.0, -1.0, glm::vec3(0.0, -1.0, 0.0) },
+	ColorVertex{ +1.0, -1.0, +1.0, glm::vec3(0.0, -1.0, 0.0) },
+	ColorVertex{ -1.0, -1.0, +1.0, glm::vec3(0.0, -1.0, 0.0) },
 
 	// Front Face
-	ColorVertex{ -1.0, +1.0, +1.0 },
-	ColorVertex{ +1.0, +1.0, +1.0 },
-	ColorVertex{ +1.0, -1.0, +1.0 },
-	ColorVertex{ -1.0, -1.0, +1.0 },
+	ColorVertex{ -1.0, +1.0, +1.0, glm::vec3(0.0, 0.0, 1.0) },
+	ColorVertex{ +1.0, +1.0, +1.0, glm::vec3(0.0, 0.0, 1.0) },
+	ColorVertex{ +1.0, -1.0, +1.0, glm::vec3(0.0, 0.0, 1.0) },
+	ColorVertex{ -1.0, -1.0, +1.0, glm::vec3(0.0, 0.0, 1.0) },
 };
 
 unsigned short ShapeGenerator::cubeIndices[36] =
@@ -79,15 +79,15 @@ Mesh* ShapeGenerator::GenCubeMesh()
 	// mIndices should point to an array of 36 indices. 3 indices per triangle times 2 triangles per face times 6 faces.
 	cube->mIndices = &cubeIndices[0];
 	cube->mNumIndices = 36;
-	SetColors(&cube->mVertices->color[0], 24, 6);
+	//SetColors(&cube->mVertices->color[0], 24, 9);
 	return cube;
 }
 
-void ShapeGenerator::SetColors(float* color0, int numVerts, int stride)
+void ShapeGenerator::SetColors(float* color0, int numVerts, int vertexSize)
 {
 	for (int iVert = 0; iVert < numVerts; iVert++) {
 		for (int iColor = 0; iColor < 3; iColor++) {
-			color0[(iVert * stride) + iColor] = glm::linearRand(0.01f, 1.0f);
+			color0[(iVert * vertexSize) + iColor] = glm::linearRand(0.01f, 1.0f);
 		}
 	}
 }

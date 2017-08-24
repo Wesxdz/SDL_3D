@@ -6,10 +6,11 @@ ColorVertex::ColorVertex()
 {
 }
 
-ColorVertex::ColorVertex(float x, float y, float z)
+ColorVertex::ColorVertex(float x, float y, float z, glm::vec3 norm)
 {
 	pos = glm::vec3{ x, y, z };
 	color = glm::vec3{ glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f), glm::linearRand(0.0f, 1.0f) };
+	normal = norm;
 }
 
 unsigned int ColorVertex::GetPosOffset()
@@ -19,5 +20,10 @@ unsigned int ColorVertex::GetPosOffset()
 
 unsigned int ColorVertex::GetColorOffset()
 {
-	return sizeof(pos);
+	return sizeof(glm::vec3);
+}
+
+unsigned int ColorVertex::GetNormalOffset()
+{
+	return sizeof(glm::vec3) * 2;
 }

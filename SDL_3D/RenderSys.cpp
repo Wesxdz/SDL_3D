@@ -17,16 +17,19 @@ void RenderSys::Init()
 	// Locations of uniform variables in Cube.vert.shader
 	GLuint positionIndex = 0;
 	GLuint colorIndex = 1;
+	GLuint normalIndex = 2;
 
 	GLint positionSize = 3;
 	GLint colorSize = 3;
+	GLint normalSize = 3;
 
-	// Specifies a offset of the first component of the first generic vertex attribute in the array in the data store of the buffer
-	GLuint positionOffset = 0;
-	GLuint colorOffset = sizeof(glm::vec3);
+	// Specifies a noffset of the first component of the first generic vertex attribute in the array in the data store of the buffer
+	GLuint positionOffset = ColorVertex::GetPosOffset();
+	GLuint colorOffset = ColorVertex::GetColorOffset();
+	GLuint normalOffset = ColorVertex::GetNormalOffset();
 
 	// Specifies the byte offset between consecutive generic vertex attributes
-	GLsizei vertexStride = sizeof(glm::vec3) * 2;
+	GLsizei vertexStride = sizeof(glm::vec3) * 3;
 
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
@@ -38,11 +41,15 @@ void RenderSys::Init()
 	glVertexAttribPointer(colorIndex, colorSize, GL_FLOAT, GL_FALSE, vertexStride, (void*)colorOffset);
 	glEnableVertexAttribArray(colorIndex);
 
+	glVertexAttribPointer(normalIndex, normalSize, GL_FLOAT, GL_FALSE, vertexStride, (void*)normalOffset);
+	glEnableVertexAttribArray(normalIndex);
+
 	GLuint indexBuffer;
 
 	glGenBuffers(1, &indexBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, cube->getIndexSize(), cube->mIndices, GL_STATIC_DRAW);
+
 	delete cube;
 }
 

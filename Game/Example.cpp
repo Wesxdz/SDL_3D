@@ -14,14 +14,11 @@
 void Example::Init()
 {
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
 	glDepthFunc(GL_LESS);
-
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 
-	Game::inst.shaders.AddVertexShader("../resources/shaders/Cube.vert.shader");
-	Game::inst.shaders.AddFragmentShader("../resources/shaders/Cube.frag.shader");
+	Game::inst.shaders.AddVertexShader("../resources/shaders/light.vert");
+	Game::inst.shaders.AddFragmentShader("../resources/shaders/light.frag");
 	Game::inst.shaders.LinkAndUseProgram();
 	Game::inst.renderer.Init();
 	// TODO: Load all necessary Mesh objects and then create GL VBOs in AssetSys
