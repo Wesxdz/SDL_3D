@@ -14,6 +14,7 @@ private:
 	GLint modelLocation;
 	GLint viewLocation;
 	GLint projectionLocation;
+	GLint viewPosLocation;
 	//std::vector<Model> mModels;
 
 };

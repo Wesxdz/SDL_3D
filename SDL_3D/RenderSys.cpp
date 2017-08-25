@@ -55,14 +55,16 @@ void RenderSys::Init()
 	modelLocation = Game::inst.shaders.GetUniformLocation("Model");
 	viewLocation = Game::inst.shaders.GetUniformLocation("View");
 	projectionLocation = Game::inst.shaders.GetUniformLocation("Projection");
+	viewPosLocation = Game::inst.shaders.GetUniformLocation("viewPos");
 
-	glUniform3f(Game::inst.shaders.GetUniformLocation("lightPos"), -5.0f, -5.0f, 1.0f);
+	glUniform3f(Game::inst.shaders.GetUniformLocation("lightPos"), 0.0f, 0.0f, 0.0f);
 
 }
 
 void RenderSys::Draw()
 {
 	GLint tintName = Game::inst.shaders.GetUniformLocation("tint");
+	glUniform3f(viewPosLocation, Game::inst.camera->mPosition.x, Game::inst.camera->mPosition.y, Game::inst.camera->mPosition.z);
 	for (Entity* entity : Game::inst.currentState->entities) {
 		// TODO: Store Models in RenderSys, then loop through them
 		Model* model;

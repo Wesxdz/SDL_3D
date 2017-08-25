@@ -31,14 +31,14 @@ void Example::Init()
 
 	Mesh* cubeMesh = ShapeGenerator::GenCubeMesh();
 
-	Entity** cubes = new Entity*[5];
+	Entity** cubes = new Entity*[6];
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 6; i++) {
 		cubes[i] = new Entity;
 	}
 
 	// One cube must be large, front and center on the screen with a rotate axis that shows off all faces, or at least 5 of them
-	cubes[0]->AddComponent(new Model(cubeMesh, glm::vec3(0.0f), glm::vec3(0.3f)));
+	cubes[0]->AddComponent(new Model(cubeMesh, glm::vec3(0.0f, 2.0f, 0.0f), glm::vec3(0.3f)));
 	cubes[0]->AddComponent(new Rotate(glm::vec3(0.5f, 1.0f, 0.5f), 1.0f));
 	cubes[0]->AddComponent(new Color(0.9f, 0.0f, 0.9f));
 	//cubes[0]->AddComponent(new Rainbow(3));
@@ -63,7 +63,10 @@ void Example::Init()
 	cubes[4]->AddComponent(new Rotate(glm::vec3(0.0f, 0.0f, 1.0f), -2.0f));
 	cubes[4]->AddComponent(new Color(0.2f, 0.5f, 0.8f));
 
-	for (int i = 0; i < 5; i++) {
+	cubes[5]->AddComponent(new Model(cubeMesh, glm::vec3(0.0f), glm::vec3(0.1f)));
+	cubes[5]->AddComponent(new Color(1.0f, 1.0f, 1.0f));
+
+	for (int i = 0; i < 6; i++) {
 		entities.push_back(cubes[i]);
 	}
 
