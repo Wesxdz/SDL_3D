@@ -51,12 +51,18 @@ void RenderSys::Init()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, cube->getIndexSize(), cube->mIndices, GL_STATIC_DRAW);
 
 	delete cube;
+
+	modelLocation = Game::inst.shaders.GetUniformLocation("Model");
+	viewLocation = Game::inst.shaders.GetUniformLocation("View");
+	projectionLocation = Game::inst.shaders.GetUniformLocation("Projection");
+
+	glUniform3f(Game::inst.shaders.GetUniformLocation("lightPos"), -5.0f, -5.0f, 1.0f);
+
 }
 
 void RenderSys::Draw()
 {
 	GLint tintName = Game::inst.shaders.GetUniformLocation("tint");
-	GLint transformName = Game::inst.shaders.GetUniformLocation("MVP");
 	for (Entity* entity : Game::inst.currentState->entities) {
 		// TODO: Store Models in RenderSys, then loop through them
 		Model* model;
@@ -68,8 +74,12 @@ void RenderSys::Draw()
 			else {
 				glUniform3f(tintName, 1.0f, 1.0f, 1.0f);
 			}
-			glUniformMatrix4fv(transformName, 1, GL_FALSE,
-				glm::value_ptr(Game::inst.camera->Projection() * Game::inst.camera->View() * model->Transform()));
+			glUniformMatrix4fv(modelLocation, 1, GL_FALSE,
+				glm::value_ptr(model->Transform()));
+			glUniformMatrix4fv(viewLocation, 1, GL_FALSE,
+				glm::value_ptr(Game::inst.camera->View()));
+			glUniformMatrix4fv(projectionLocation, 1, GL_FALSE,
+				glm::value_ptr(Game::inst.camera->Projection()));
 			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
 		}
 	}

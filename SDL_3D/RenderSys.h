@@ -11,6 +11,9 @@ public:
 	void Draw();
 
 private:
+	GLint modelLocation;
+	GLint viewLocation;
+	GLint projectionLocation;
 	//std::vector<Model> mModels;
 
 };
