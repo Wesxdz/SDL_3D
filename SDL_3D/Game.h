@@ -28,7 +28,9 @@ public:
 	SDL_Window* window{ nullptr };
 	SDL_GLContext glContext;
 
-	ShaderSys shaders;
+	std::vector<ShaderSys*> shaders;
+
+	ShaderSys* activeShader{ nullptr };
 	RenderSys renderer;
 
 	Camera* camera;

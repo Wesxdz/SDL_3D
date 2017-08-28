@@ -13,7 +13,7 @@ Game::Game()
 Game::~Game()
 {
 	delete currentState;
-	shaders.Shutdown();
+	activeShader->Shutdown();
 	SDL_GL_DeleteContext(glContext);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -43,7 +43,6 @@ void Game::Init(const char* name, int width, int height)
 
 	glewExperimental = GL_TRUE;
 	glewInit();
-	inst.shaders.Init();
 }
 
 void Game::Run(GameState* startState)

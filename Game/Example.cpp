@@ -5,6 +5,7 @@
 #include "KeyCam.h"
 #include "MouseCam.h"
 #include "Rainbow.h"
+#include "Renderable.h"
 #include "Rotate.h"
 #include "ShaderSys.h"
 #include "ShapeGenerator.h"
@@ -17,9 +18,14 @@ void Example::Init()
 	glDepthFunc(GL_LESS);
 	glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 
-	Game::inst.shaders.AddVertexShader("../resources/shaders/light.vert");
-	Game::inst.shaders.AddFragmentShader("../resources/shaders/light.frag");
-	Game::inst.shaders.LinkAndUseProgram();
+	ShaderSys* lighting = new ShaderSys;
+	lighting->Init();
+	lighting->AddVertexShader("../resources/shaders/light.vert");
+	lighting->AddFragmentShader("../resources/shaders/light.frag");
+	lighting->LinkAndUseProgram();
+	Game::inst.shaders.push_back(lighting);
+	Game::inst.activeShader = lighting;
+
 	Game::inst.renderer.Init();
 	// TODO: Load all necessary Mesh objects and then create GL VBOs in AssetSys
 
@@ -41,30 +47,43 @@ void Example::Init()
 	cubes[0]->AddComponent(new Model(cubeMesh, glm::vec3(0.0f, 2.0f, 0.0f), glm::vec3(0.3f)));
 	cubes[0]->AddComponent(new Rotate(glm::vec3(0.5f, 1.0f, 0.5f), 1.0f));
 	cubes[0]->AddComponent(new Color(0.9f, 0.0f, 0.9f));
-	//cubes[0]->AddComponent(new Rainbow(3));
+	cubes[0]->AddComponent(new LightingRender());
 
 	// Place one cube in the upper - left of the screen, have it rotate around the X - axis.
 	cubes[1]->AddComponent(new Model(cubeMesh, glm::vec3(-5.0f, -5.0f, 1.0f), glm::vec3(0.1f)));
 	cubes[1]->AddComponent(new Rotate(glm::vec3(1.0f, 0.0f, 0.0f), 2.0f));
 	cubes[1]->AddComponent(new Color(1.0f, 0.2f, 0.0f));
+	cubes[1]->AddComponent(new LightingRender());
 
 	// Place one cube in the upper - right of the screen, have it rotate around the Y - axis.
 	cubes[2]->AddComponent(new Model(cubeMesh, glm::vec3(0.5f, 0.5f, 10.0f), glm::vec3(0.1f)));
 	cubes[2]->AddComponent(new Rotate(glm::vec3(0.0f, 1.0f, 0.0f), 2.0f));
 	cubes[2]->AddComponent(new Color(0.0f, 0.7f, 0.3f));
+	cubes[2]->AddComponent(new LightingRender());
 
 	// Place one cube in the lower - right of the screen, rotating around the Z - axis.
 	cubes[3]->AddComponent(new Model(cubeMesh, glm::vec3(0.5f, -0.5f, 4.0f), glm::vec3(0.1f)));
 	cubes[3]->AddComponent(new Rotate(glm::vec3(0.0f, 0.0f, 1.0f), 2.0f));
 	cubes[3]->AddComponent(new Color(0.2f, 0.5f, 0.8f));
+	cubes[3]->AddComponent(new LightingRender());
 
 	// Place one cube in the lower - left of the screen, have it rotate around the same axis as the first cube, but have it rotate in the other direction.
 	cubes[4]->AddComponent(new Model(cubeMesh, glm::vec3(-0.5f, -0.5f, -4.0f), glm::vec3(0.1f)));
 	cubes[4]->AddComponent(new Rotate(glm::vec3(0.0f, 0.0f, 1.0f), -2.0f));
 	cubes[4]->AddComponent(new Color(0.2f, 0.5f, 0.8f));
+	cubes[4]->AddComponent(new LightingRender());
+
+	ShaderSys* test = new ShaderSys;
+	test->Init();
+	test->AddVertexShader("../resources/shaders/simple.vert");
+	test->AddFragmentShader("../resources/shaders/simple.frag");
+	test->LinkAndUseProgram();
+	Game::inst.shaders.push_back(test);
+	Game::inst.activeShader = test;
 
 	cubes[5]->AddComponent(new Model(cubeMesh, glm::vec3(0.0f), glm::vec3(0.1f)));
 	cubes[5]->AddComponent(new Color(1.0f, 1.0f, 1.0f));
+	cubes[5]->AddComponent(new SimpleRender());
 
 	for (int i = 0; i < 6; i++) {
 		entities.push_back(cubes[i]);

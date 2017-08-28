@@ -169,6 +169,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseCam.h" />
     <ClInclude Include="Rainbow.h" />
+    <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderSys.h" />
     <ClInclude Include="Rotate.h" />
     <ClInclude Include="ShaderSys.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="MouseCam.cpp" />
     <ClCompile Include="Rainbow.cpp" />
+    <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="RenderSys.cpp" />
     <ClCompile Include="Rotate.cpp" />
     <ClCompile Include="ShaderSys.cpp" />
